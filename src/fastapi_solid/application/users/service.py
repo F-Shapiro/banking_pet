@@ -16,23 +16,11 @@ class UserService:
         self.uow = uow
         self.users_repo = users_repo
 
-    async def get_all(self, pagination: Pagination) -> list[UserOut]:
-        async with self.uow:
-            users = await self.users_repo.get_all(pagination)
-            return [UserOut.model_validate(u, from_attributes=True) for u in users]
-
     async def get_by_id(self, user_id: UUID) -> UserOut:
         async with self.uow:
             user = await self.users_repo.get_by_id(user_id)
             if not user:
                 raise NotFound.domain_entity(User, user_id)
-            return UserOut.model_validate(user, from_attributes=True)
-
-    async def get_random(self) -> UserOut:
-        async with self.uow:
-            user = await self.users_repo.get_random_user()
-            if not user:
-                raise NotFound("No users to select from")
             return UserOut.model_validate(user, from_attributes=True)
 
     async def create(self, user_in: UserIn) -> UserOut:

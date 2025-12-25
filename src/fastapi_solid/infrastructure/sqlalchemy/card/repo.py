@@ -21,5 +21,5 @@ class AlchemyCardRepo(CardRepository, AlchemyRepo[CardOrm]):
         return to_dataclass(card_orm, Card)
 
     async def get_by_account(self, account_id: UUID) -> list[Card]:
-        cards_orm = await self._get_all_by(account_id=account_id)
-        return [to_dataclass(c, Card) for c in cards_orm]
+        cards_orm = await self.get_by_account(account_id=account_id)
+        return [to_dataclass(card, Card) for card in cards_orm]

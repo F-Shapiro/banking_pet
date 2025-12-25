@@ -27,7 +27,7 @@ class AlchemyTransactionRepo(
         return to_dataclass(tx_orm, Transaction) if tx_orm else None
 
     async def get_by_account(self, account_id: UUID) -> list[Transaction]:
-        txs_orm = await self._get_all_by(account_id=account_id)
+        txs_orm = await self.get_by_account(account_id=account_id)
         return [to_dataclass(tx, Transaction) for tx in txs_orm]
 
     async def create(self, data: TransactionIn) -> Transaction:
