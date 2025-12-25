@@ -4,7 +4,7 @@ version = "1.1.1"
 description = "Clean FastAPI template: SOLID design, SQLAlchemy UoW, Redis cache, Alembic."
 readme = "README.md"
 authors = [
-    { name = "knyaz7", email = "hidden@mail.ru" }
+    { name = "F-Shapiro", email = "hidden@mail.ru" }
 ]
 requires-python = ">=3.13"
 dependencies = [
